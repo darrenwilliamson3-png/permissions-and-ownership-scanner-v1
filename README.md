@@ -11,6 +11,14 @@ This tool was built as a **learning-focused but production-minded** utility, wit
 
 ---
 
+Why this tool exists
+
+This tool was created as a practical learning project to explore how filesystem permissions work across platforms and how permission-related risks can be identified and reported in a structured way.
+
+Rather than focusing on remediation or deletion, the emphasis is on safe inspection, clear reporting, and predictable CLI behaviour, making the output suitable for review, auditing, or further processing. The project intentionally prioritises correctness, portability, and extensibility over aggressive automation.
+
+---
+
 ## Features
 
 * Scan files in a target directory (optionally recursive)
@@ -144,4 +152,5 @@ Darren Williamson
 Python Utility Development * Automation * Data Analysis
 Uk Citizen / Spain-based / Remote
 LinkedIn: https://www.linkedin.com/in/darren-williamson3/
+
 
