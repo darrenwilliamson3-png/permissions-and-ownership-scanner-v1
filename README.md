@@ -11,7 +11,7 @@ This tool was built as a **learning-focused but production-minded** utility, wit
 
 ---
 
-Why this tool exists
+## Why This Tool Exists
 
 This tool was created as a practical learning project to explore how filesystem permissions work across platforms and how permission-related risks can be identified and reported in a structured way.
 
@@ -152,5 +152,6 @@ Darren Williamson
 Python Utility Development * Automation * Data Analysis
 Uk Citizen / Spain-based / Remote
 LinkedIn: https://www.linkedin.com/in/darren-williamson3/
+
 
 
