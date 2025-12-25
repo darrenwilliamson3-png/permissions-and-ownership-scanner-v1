@@ -1,2 +1,147 @@
-# permissions-and-ownership-scanner-v1
-Cross-platform permissions scanner in Python with risk heuristics and exportable reports.
+# Permissions and Ownership Scanner (V1)
+
+A cross-platform Python utility for scanning file permissions, identifying risky permission configurations, and exporting results in CSV and JSON formats for further analysis.
+
+This tool was built as a **learning-focused but production-minded** utility, with emphasis on:
+
+* clear architecture
+* predictable CLI behaviour
+* safe output handling
+* extensibility for future versions
+
+---
+
+## Features
+
+* Scan files in a target directory (optionally recursive)
+* Detect and report:
+
+  * UNIX-style permission strings (e.g. `-rw-rw-rw-`)
+  * Octal permission values (e.g. `666`, `777`)
+  * Risk indicators such as:
+
+    * `WORLD_WRITABLE`
+    * `EXECUTABLE_WRITABLE`
+    * `WINDOWS_PERMISSION_HEURISTIC`
+	
+* Cross-platform support:
+  * POSIX ownership (user/group) on Unix-like systems
+  * Safe heuristics on Windows where POSIX permissions do not apply
+
+* Export results to:
+  * CSV (Excel-compatible)
+  * JSON (machine-readable)
+
+* CLI flags for quiet / verbose output control
+
+---
+
+## Usage
+	python permissions_scanner_v1.py <path> [options]
+
+### Examples
+
+Scan a directory (non-recursive, default quiet mode):
+	python permissions_scanner_v1.py D:\TEST
+
+Recursive scan:
+	python permissions_scanner_v1.py D:\TEST --recursive
+
+
+Write a custom CSV file:
+	python permissions_scanner_v1.py D:\TEST --csv myreport.csv
+```
+
+Suppress all terminal output:
+	python permissions_scanner_v1.py D:\TEST --quiet
+```
+
+Enable per-file terminal output:
+	python permissions_scanner_v1.py D:\TEST --verbose
+
+---
+
+## Command-Line Options
+
+| Flag            | Description                     |
+| --------------- | ------------------------------- |
+| `--recursive`   | Recursively scan subdirectories |
+| `--csv <file>`  | Write results to a CSV file     |
+| `--json <file>` | Write results to a JSON file    |
+| `--quiet`       | Suppress all terminal output    |
+| `--verbose`     | Show per-file scan results      |
+
+> **Note:**
+> Quiet mode suppresses per-file output but still allows completion messages and report generation.
+
+---
+
+## Output Format
+
+### CSV Columns
+
+	* `path`
+	* `permissions_text`
+	* `permissions_octal`
+	* `risk_flags`
+	* `is_windows`
+
+### JSON
+
+	An array of result objects containing the same fields as the CSV output.
+
+---
+
+## Excel Compatibility Note
+
+Some permission strings (for example those beginning with `-`, such as `-rwxrwxrwx`) may be interpreted by Microsoft Excel as formulas, resulting in `#NAME?` errors.
+
+To ensure compatibility:
+
+	* All CSV fields are written as quoted text
+	* JSON output is unaffected and preserves raw values
+
+This behaviour is due to Excel’s automatic formula evaluation and is not a data integrity issue.
+
+---
+
+## Design Notes
+
+	* Core scanning logic is isolated in `scan_directory()` for future reuse
+	* Output handling (CSV / JSON) is separated from scanning logic
+	* CLI parsing and execution flow are centralized in `main()`
+	* Architecture is intentionally stable to support incremental versioned enhancements
+
+---
+
+## Planned Improvements (V2+)
+
+	* Progress indicators for large scans
+	* Summary statistics (file counts, risk totals)
+	* Optional deletion / remediation mode (explicit opt-in)
+	* Structured logging support
+	* Unit tests and CI integration
+
+---
+
+## License
+
+MIT License
+See `LICENSE` file for details.
+
+---
+
+## 👤 Author
+
+Created as part of a learning and portfolio project focused on:
+
+* Python fundamentals
+* filesystem inspection
+* CLI tooling
+* defensive programming practices
+
+Darren Williamson
+Python Utility Development * Automation * Data Analysis
+Uk Citizen / Spain-based / Remote
+LinkedIn: https://www.linkedin.com/in/darren-williamson3/
+
