@@ -122,6 +122,17 @@ This behaviour is due to Excel’s automatic formula evaluation and is not a dat
 
 ---
 
+## Limitations
+
+	* This tool is read-only and does not modify, delete, or remediate files. Any corrective action must be performed manually by the user.
+	* On Windows systems, traditional UNIX permission models do not apply. As a result, permission-related flags on Windows are based on 			heuristics rather than POSIX ownership and should be interpreted as indicators, not absolute security findings.
+	* The tool does not currently evaluate effective permissions inherited through complex ACLs on Windows.
+	* Designed for reporting and inspection rather than real-time monitoring.
+
+	These limitations are intentional and help keep the tool predictable, safe, and suitable for learning and auditing purposes.
+
+---
+
 ## Planned Improvements (V2+)
 
 	* Progress indicators for large scans
@@ -152,6 +163,7 @@ Darren Williamson
 Python Utility Development * Automation * Data Analysis
 Uk Citizen / Spain-based / Remote
 LinkedIn: https://www.linkedin.com/in/darren-williamson3/
+
 
 
 
